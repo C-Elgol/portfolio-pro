@@ -10,20 +10,19 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
     <style>
-.toast {
-    @apply px-6 py-4 rounded-lg text-white shadow-lg transition-all duration-300 opacity-0 transform translate-y-4;
-}
-.toast-show {
-    @apply opacity-100 translate-y-0;
-}
-.toast-success {
-    @apply bg-green-500;
-}
-.toast-error {
-    @apply bg-red-500;
-}
-</style>
-
+        .toast {
+            @apply px-6 py-4 rounded-lg text-white shadow-lg transition-all duration-300 opacity-0 transform translate-y-4;
+        }
+        .toast-show {
+            @apply opacity-100 translate-y-0;
+        }
+        .toast-success {
+            @apply bg-green-500;
+        }
+        .toast-error {
+            @apply bg-red-500;
+        }
+    </style>
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="bg-slate-900 text-slate-100">
@@ -61,7 +60,8 @@
         <div class="container mx-auto px-6 flex flex-col md:flex-row items-center">
             <div class="md:w-1/2 mb-12 md:mb-0">
                 <div class="inline-block px-4 py-1 rounded-full bg-slate-800 text-slate-300 mb-6">
-                    <span class="text-indigo-400 mr-2">✦</span> Full Stack Developer
+                    <span class="text-indigo-400 mr-2">✦</span> 
+                    <span id="typingText"></span>
                 </div>
                 <h1 class="text-5xl md:text-7xl font-bold mb-6 leading-tight">
                     Hi, I'm <span class="text-gradient">Ayemele Elgol</span>
@@ -152,7 +152,7 @@
                         <div class="absolute -bottom-6 -right-6 bg-indigo-600 p-6 rounded-2xl max-w-xs">
                             <div class="flex items-center mb-2">
                                 <i class="fas fa-medal text-amber-400 mr-2"></i>
-                                <h3 class="font-bold">5+ Years Experience</h3>
+                                <h3 class="font-bold">3+ Years Experience</h3>
                             </div>
                             <p class="text-sm text-slate-200">Building digital products for clients worldwide</p>
                         </div>
@@ -162,7 +162,7 @@
                 <div class="lg:w-3/5">
                     <h3 class="text-2xl font-bold mb-6">Crafting Digital Experiences</h3>
                     <p class="text-slate-400 mb-6">
-                        I'm a full-stack developer with over 5 years of experience specializing in building exceptional digital experiences. My passion lies in creating clean, efficient, and user-friendly applications that solve real-world problems.
+                        I'm a full-stack developer with over 3 years of experience specializing in building exceptional digital experiences. My passion lies in creating clean, efficient, and user-friendly applications that solve real-world problems.
                     </p>
                     
                     <p class="text-slate-400 mb-8">
@@ -548,62 +548,95 @@
         </div>
     </footer>
     <script src="script.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
-<script>
-    function showToast(message, type = "success", duration = 3000) {
-    const container = document.getElementById("toast-container");
-    const toast = document.createElement("div");
-    toast.className = `toast toast-${type}`;
-    toast.textContent = message;
-    container.appendChild(toast);
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+    <script>
+        // ==================== TYPING ANIMATION ====================
+        const typingText = document.getElementById('typingText');
+        const roles = ['Full Stack Developer', 'UI/UX Designer', 'Problem Solver', 'Creative Thinker'];
+        let roleIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
 
-    // Trigger animation
-    setTimeout(() => toast.classList.add("toast-show"), 100);
+        function type() {
+            const currentRole = roles[roleIndex];
+            if (!isDeleting) {
+                typingText.textContent = currentRole.substring(0, charIndex);
+                charIndex++;
+                if (charIndex > currentRole.length) {
+                    isDeleting = true;
+                    setTimeout(type, 1500); // Pause before deleting
+                } else {
+                    setTimeout(type, 100); // Typing speed
+                }
+            } else {
+                typingText.textContent = currentRole.substring(0, charIndex);
+                charIndex--;
+                if (charIndex < 0) {
+                    isDeleting = false;
+                    roleIndex = (roleIndex + 1) % roles.length;
+                    setTimeout(type, 500); // Pause before typing next role
+                } else {
+                    setTimeout(type, 50); // Deleting speed
+                }
+            }
+        }
 
-    // Remove toast after duration
-    setTimeout(() => {
-        toast.classList.remove("toast-show");
-        setTimeout(() => toast.remove(), 300); // allow transition to complete
-    }, duration);
-}
+        // Start typing animation
+        type();
 
+        // Existing EmailJS and Toast code
+        function showToast(message, type = "success", duration = 3000) {
+            const container = document.getElementById("toast-container");
+            const toast = document.createElement("div");
+            toast.className = `toast toast-${type}`;
+            toast.textContent = message;
+            container.appendChild(toast);
 
-  (function() {
-    emailjs.init("5QC70C1d6tdDD20Xs"); // Your Public Key
-  })();
+            // Trigger animation
+            setTimeout(() => toast.classList.add("toast-show"), 100);
 
-  document.getElementById("contact-form").addEventListener("submit", function(event) {
-    event.preventDefault();
+            // Remove toast after duration
+            setTimeout(() => {
+                toast.classList.remove("toast-show");
+                setTimeout(() => toast.remove(), 300); // allow transition to complete
+            }, duration);
+        }
 
-    const button = this.querySelector('button');
-    button.disabled = true;
-    button.textContent = "Sending...";
+        (function() {
+            emailjs.init("5QC70C1d6tdDD20Xs"); // Your Public Key
+        })();
 
-    const time = new Date().toLocaleString();
+        document.getElementById("contact-form").addEventListener("submit", function(event) {
+            event.preventDefault();
 
-    emailjs.send("service_k3gtisn", "template_7tfm9x9", {
-    name: document.getElementById("name").value,
-    email: document.getElementById("email").value,
-    subject: document.getElementById("subject").value,
-    message: document.getElementById("message").value,
-    time: time
-    }).then(
-    function(response) {
-        showToast("✅ Message sent successfully!", "success");
-        event.target.reset();
-    },
-    function(error) {
-        showToast("❌ Failed to send message. Please try again.", "error");
-        console.error("EmailJS Error:", error);
-    }
-    ).finally(() => {
-    button.disabled = false;
-    button.textContent = "Send Message ✈️";
-    });
+            const button = this.querySelector('button');
+            button.disabled = true;
+            button.textContent = "Sending...";
 
-  });
-</script>
-<!-- Toast Container -->
-<div id="toast-container" class="fixed top-5 right-5 flex flex-col gap-3 z-50"></div>
+            const time = new Date().toLocaleString();
+
+            emailjs.send("service_k3gtisn", "template_7tfm9x9", {
+                name: document.getElementById("name").value,
+                email: document.getElementById("email").value,
+                subject: document.getElementById("subject").value,
+                message: document.getElementById("message").value,
+                time: time
+            }).then(
+                function(response) {
+                    showToast("✅ Message sent successfully!", "success");
+                    event.target.reset();
+                },
+                function(error) {
+                    showToast("❌ Failed to send message. Please try again.", "error");
+                    console.error("EmailJS Error:", error);
+                }
+            ).finally(() => {
+                button.disabled = false;
+                button.textContent = "Send Message ✈️";
+            });
+        });
+    </script>
+    <!-- Toast Container -->
+    <div id="toast-container" class="fixed top-5 right-5 flex flex-col gap-3 z-50"></div>
 </body>
 </html>
