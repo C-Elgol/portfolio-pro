@@ -1,642 +1,955 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Ayemele Elgol | Full Stack Developer</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
     <style>
-        .toast {
-            @apply px-6 py-4 rounded-lg text-white shadow-lg transition-all duration-300 opacity-0 transform translate-y-4;
-        }
-        .toast-show {
-            @apply opacity-100 translate-y-0;
-        }
-        .toast-success {
-            @apply bg-green-500;
-        }
-        .toast-error {
-            @apply bg-red-500;
-        }
+      .toast {
+        @apply px-6 py-4 rounded-lg text-white shadow-lg transition-all duration-300 opacity-0 transform translate-y-4;
+      }
+      .toast-show {
+        @apply opacity-100 translate-y-0;
+      }
+      .toast-success {
+        @apply bg-green-500;
+      }
+      .toast-error {
+        @apply bg-red-500;
+      }
     </style>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body class="bg-slate-900 text-slate-100">
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body class="bg-slate-900 text-slate-100">
     <!-- Custom Cursor -->
     <div class="cursor-follower"></div>
-    
+
     <!-- Animated Background Particles -->
     <div class="particles-container" id="particles-container"></div>
-    
+
     <!-- Navigation -->
     <nav class="fixed w-full z-50 py-4 px-6 glass-effect">
-        <div class="container mx-auto flex justify-between items-center">
-            <a href="#" class="text-2xl font-bold text-gradient">AE.</a>
-            <div class="hidden md:flex space-x-10">
-                <a href="#home" class="nav-link text-slate-300 hover:text-white transition-colors duration-300">Home</a>
-                <a href="#about" class="nav-link text-slate-300 hover:text-white transition-colors duration-300">About</a>
-                <a href="#skills" class="nav-link text-slate-300 hover:text-white transition-colors duration-300">Skills</a>
-                <a href="#projects" class="nav-link text-slate-300 hover:text-white transition-colors duration-300">Projects</a>
-                <a href="#experience" class="nav-link text-slate-300 hover:text-white transition-colors duration-300">Experience</a>
-                <a href="#contact" class="nav-link text-slate-300 hover:text-white transition-colors duration-300">Contact</a>
-            </div>
-            <div class="flex items-center space-x-4">
-                <button class="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-2 rounded-full font-medium transition-colors duration-300 glow">
-                    Hire Me
-                </button>
-                <button class="md:hidden text-slate-300">
-                    <i class="fas fa-bars text-xl"></i>
-                </button>
-            </div>
+      <div class="container mx-auto flex justify-between items-center">
+        <a href="#"
+          ><img src="./images/logo.jpeg" alt="AE Logo" class="h-16"
+        /></a>
+        <div class="hidden md:flex space-x-10">
+          <a
+            href="#home"
+            class="nav-link text-slate-300 hover:text-white transition-colors duration-300"
+            >Home</a
+          >
+          <a
+            href="#about"
+            class="nav-link text-slate-300 hover:text-white transition-colors duration-300"
+            >About</a
+          >
+          <a
+            href="#skills"
+            class="nav-link text-slate-300 hover:text-white transition-colors duration-300"
+            >Skills</a
+          >
+          <a
+            href="#projects"
+            class="nav-link text-slate-300 hover:text-white transition-colors duration-300"
+            >Projects</a
+          >
+          <a
+            href="#experience"
+            class="nav-link text-slate-300 hover:text-white transition-colors duration-300"
+            >Experience</a
+          >
+          <a
+            href="#contact"
+            class="nav-link text-slate-300 hover:text-white transition-colors duration-300"
+            >Contact</a
+          >
         </div>
+        <div class="flex items-center space-x-4">
+          <button
+            class="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-2 rounded-full font-medium transition-colors duration-300 glow"
+          >
+            Hire Me
+          </button>
+          <button class="md:hidden text-slate-300">
+            <i class="fas fa-bars text-xl"></i>
+          </button>
+        </div>
+      </div>
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="min-h-screen flex items-center relative overflow-hidden pt-20">
-        <div class="container mx-auto px-6 flex flex-col md:flex-row items-center">
-            <div class="md:w-1/2 mb-12 md:mb-0">
-                <div class="inline-block px-4 py-1 rounded-full bg-slate-800 text-slate-300 mb-6">
-                    <span class="text-indigo-400 mr-2">✦</span> 
-                    <span id="typingText"></span>
-                </div>
-                <h1 class="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-                    Hi, I'm <span class="text-gradient">Ayemele Elgol</span>
-                </h1>
-                <p class="text-xl text-slate-400 mb-8 max-w-lg">
-                    I create <span class="text-indigo-400 font-medium">digital experiences</span> that blend innovative design with cutting-edge technology.
-                </p>
-                <div class="flex flex-wrap gap-4">
-                    <a href="#projects" class="bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-4 rounded-full font-medium transition-all duration-300 flex items-center glow">
-                        View My Work <i class="fas fa-arrow-right ml-2"></i>
-                    </a>
-                    <a href="#contact" class="border border-slate-600 hover:border-indigo-500 text-slate-300 hover:text-white px-8 py-4 rounded-full font-medium transition-all duration-300 flex items-center">
-                        Get In Touch <i class="fas fa-paper-plane ml-2"></i>
-                    </a>
-                </div>
-                
-                <div class="flex mt-12 space-x-6">
-                    <div class="text-center">
-                        <div class="text-3xl font-bold text-indigo-400">42+</div>
-                        <div class="text-slate-400 text-sm">Projects</div>
-                    </div>
-                    <div class="text-center">
-                        <div class="text-3xl font-bold text-emerald-400">3+</div>
-                        <div class="text-slate-400 text-sm">Years Exp</div>
-                    </div>
-                    <div class="text-center">
-                        <div class="text-3xl font-bold text-amber-400">9+</div>
-                        <div class="text-slate-400 text-sm">Clients</div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="md:w-1/2 flex justify-center relative">
-                <div class="relative">
-                    <div class="w-80 h-80 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-full flex items-center justify-center morph-shape floating relative overflow-hidden">
-                        <img src="./images/PXL_20250711_090258571~2.jpg" 
-                             alt="Ayemele Elgol" class="w-full h-full object-cover morph-shape">
-                    </div>
-                    
-                    <div class="absolute -top-4 -right-4 w-24 h-24 bg-amber-400 rounded-full flex items-center justify-center text-slate-900 floating" style="animation-delay: 2s;">
-                        <div class="text-center">
-                            <i class="fas fa-award text-xl"></i>
-                            <div class="text-xs font-bold mt-1">Top Rated</div>
-                        </div>
-                    </div>
-                    
-                    <div class="absolute -bottom-6 -left-6 w-32 h-32 bg-emerald-400 rounded-full flex items-center justify-center text-slate-900 floating" style="animation-delay: 4s;">
-                        <div class="text-center">
-                            <i class="fas fa-rocket text-xl"></i>
-                            <div class="text-xs font-bold mt-1">Fast Delivery</div>
-                        </div>
-                    </div>
-                    
-                    <div class="absolute top-1/2 -right-20 transform -translate-y-1/2 glass-effect p-4 rounded-2xl max-w-xs">
-                        <div class="flex items-center mb-2">
-                            <div class="w-3 h-3 bg-emerald-400 rounded-full mr-2"></div>
-                            <span class="text-sm font-medium">Available for work</span>
-                        </div>
-                        <p class="text-xs text-slate-400">Currently accepting new projects</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
-            <a href="#about" class="text-slate-400 hover:text-white">
-                <i class="fas fa-chevron-down text-2xl"></i>
+    <section
+      id="home"
+      class="min-h-screen flex items-center relative overflow-hidden pt-20"
+    >
+      <div
+        class="container mx-auto px-6 flex flex-col md:flex-row items-center"
+      >
+        <div class="md:w-1/2 mb-12 md:mb-0">
+          <div
+            class="inline-block px-4 py-1 rounded-full bg-slate-800 text-slate-300 mb-6"
+          >
+            <span class="text-indigo-400 mr-2">✦</span>
+            <span id="typingText"></span>
+          </div>
+          <h1 class="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+            Hi, I'm <span class="text-gradient">Ayemele Elgol</span>
+          </h1>
+          <p class="text-xl text-slate-400 mb-8 max-w-lg">
+            I create
+            <span class="text-indigo-400 font-medium">digital experiences</span>
+            that blend innovative design with cutting-edge technology.
+          </p>
+          <div class="flex flex-wrap gap-4">
+            <a
+              href="#projects"
+              class="bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-4 rounded-full font-medium transition-all duration-300 flex items-center glow"
+            >
+              View My Work <i class="fas fa-arrow-right ml-2"></i>
             </a>
+            <a
+              href="#contact"
+              class="border border-slate-600 hover:border-indigo-500 text-slate-300 hover:text-white px-8 py-4 rounded-full font-medium transition-all duration-300 flex items-center"
+            >
+              Get In Touch <i class="fas fa-paper-plane ml-2"></i>
+            </a>
+          </div>
+
+          <div class="flex mt-12 space-x-6">
+            <div class="text-center">
+              <div class="text-3xl font-bold text-indigo-400">42+</div>
+              <div class="text-slate-400 text-sm">Projects</div>
+            </div>
+            <div class="text-center">
+              <div class="text-3xl font-bold text-emerald-400">3+</div>
+              <div class="text-slate-400 text-sm">Years Exp</div>
+            </div>
+            <div class="text-center">
+              <div class="text-3xl font-bold text-amber-400">9+</div>
+              <div class="text-slate-400 text-sm">Clients</div>
+            </div>
+          </div>
         </div>
+
+        <div class="md:w-1/2 flex justify-center relative">
+          <div class="relative">
+            <div
+              class="w-80 h-80 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-full flex items-center justify-center morph-shape floating relative overflow-hidden"
+            >
+              <img
+                src="./images/PXL_20250711_090258571~2.jpg"
+                alt="Ayemele Elgol"
+                class="w-full h-full object-cover morph-shape"
+              />
+            </div>
+
+            <div
+              class="absolute -top-4 -right-4 w-24 h-24 bg-amber-400 rounded-full flex items-center justify-center text-slate-900 floating"
+              style="animation-delay: 2s"
+            >
+              <div class="text-center">
+                <i class="fas fa-award text-xl"></i>
+                <div class="text-xs font-bold mt-1">Top Rated</div>
+              </div>
+            </div>
+
+            <div
+              class="absolute -bottom-6 -left-6 w-32 h-32 bg-emerald-400 rounded-full flex items-center justify-center text-slate-900 floating"
+              style="animation-delay: 4s"
+            >
+              <div class="text-center">
+                <i class="fas fa-rocket text-xl"></i>
+                <div class="text-xs font-bold mt-1">Fast Delivery</div>
+              </div>
+            </div>
+
+            <div
+              class="absolute top-1/2 -right-20 transform -translate-y-1/2 glass-effect p-4 rounded-2xl max-w-xs"
+            >
+              <div class="flex items-center mb-2">
+                <div class="w-3 h-3 bg-emerald-400 rounded-full mr-2"></div>
+                <span class="text-sm font-medium">Available for work</span>
+              </div>
+              <p class="text-xs text-slate-400">
+                Currently accepting new projects
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce"
+      >
+        <a href="#about" class="text-slate-400 hover:text-white">
+          <i class="fas fa-chevron-down text-2xl"></i>
+        </a>
+      </div>
     </section>
 
     <!-- About Section -->
     <section id="about" class="section-padding relative">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-bold mb-6">About <span class="text-gradient">Me</span></h2>
-                <p class="text-xl text-slate-400 max-w-2xl mx-auto">A passionate developer with a keen eye for design and a love for creating digital solutions</p>
-            </div>
-            
-            <div class="flex flex-col lg:flex-row gap-12 items-center">
-                <div class="lg:w-2/5">
-                    <div class="relative">
-                        <div class="w-full h-96 bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl overflow-hidden">
-                            <img src="./images/20250920_150511~2.jpg" 
-                                 alt="Working" class="w-full h-full object-cover opacity-80">
-                        </div>
-                        
-                        <div class="absolute -bottom-6 -right-6 bg-indigo-600 p-6 rounded-2xl max-w-xs">
-                            <div class="flex items-center mb-2">
-                                <i class="fas fa-medal text-amber-400 mr-2"></i>
-                                <h3 class="font-bold">3+ Years Experience</h3>
-                            </div>
-                            <p class="text-sm text-slate-200">Building digital products for clients worldwide</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="lg:w-3/5">
-                    <h3 class="text-2xl font-bold mb-6">Crafting Digital Experiences</h3>
-                    <p class="text-slate-400 mb-6">
-                        I'm a full-stack developer with over 3 years of experience specializing in building exceptional digital experiences. My passion lies in creating clean, efficient, and user-friendly applications that solve real-world problems.
-                    </p>
-                    
-                    <p class="text-slate-400 mb-8">
-                        My approach combines technical expertise with creative problem-solving to deliver high-quality products that exceed client expectations. I believe in the power of technology to transform businesses and improve lives.
-                    </p>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                        <div class="flex items-center">
-                            <div class="w-12 h-12 bg-indigo-500/20 rounded-lg flex items-center justify-center mr-4">
-                                <i class="fas fa-code text-indigo-400"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold">Clean Code</h4>
-                                <p class="text-slate-400 text-sm">Readable, maintainable, and efficient</p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-center">
-                            <div class="w-12 h-12 bg-emerald-500/20 rounded-lg flex items-center justify-center mr-4">
-                                <i class="fas fa-mobile-alt text-emerald-400"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold">Responsive Design</h4>
-                                <p class="text-slate-400 text-sm">Perfect on any device</p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-center">
-                            <div class="w-12 h-12 bg-amber-500/20 rounded-lg flex items-center justify-center mr-4">
-                                <i class="fas fa-bolt text-amber-400"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold">Fast Performance</h4>
-                                <p class="text-slate-400 text-sm">Lightning-fast load times</p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-center">
-                            <div class="w-12 h-12 bg-rose-500/20 rounded-lg flex items-center justify-center mr-4">
-                                <i class="fas fa-headset text-rose-400"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold">Great Support</h4>
-                                <p class="text-slate-400 text-sm">Always here to help</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="flex flex-wrap gap-4">
-                        <a href="./images/ayemele.pdf" class="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-full font-medium transition-colors duration-300 flex items-center">
-                            Download CV <i class="fas fa-download ml-2"></i>
-                        </a>
-                        <a href="#contact" class="border border-slate-600 hover:border-indigo-500 text-slate-300 hover:text-white px-6 py-3 rounded-full font-medium transition-all duration-300 flex items-center">
-                            Let's Talk <i class="fas fa-comment-dots ml-2"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl md:text-5xl font-bold mb-6">
+            About <span class="text-gradient">Me</span>
+          </h2>
+          <p class="text-xl text-slate-400 max-w-2xl mx-auto">
+            A passionate developer with a keen eye for design and a love for
+            creating digital solutions
+          </p>
         </div>
+
+        <div class="flex flex-col lg:flex-row gap-12 items-center">
+          <div class="lg:w-2/5">
+            <div class="relative">
+              <div
+                class="w-full h-96 bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl overflow-hidden"
+              >
+                <img
+                  src="./images/20250920_150511~2.jpg"
+                  alt="Working"
+                  class="w-full h-full object-cover opacity-80"
+                />
+              </div>
+
+              <div
+                class="absolute -bottom-6 -right-6 bg-indigo-600 p-6 rounded-2xl max-w-xs"
+              >
+                <div class="flex items-center mb-2">
+                  <i class="fas fa-medal text-amber-400 mr-2"></i>
+                  <h3 class="font-bold">3+ Years Experience</h3>
+                </div>
+                <p class="text-sm text-slate-200">
+                  Building digital products for clients worldwide
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:w-3/5">
+            <h3 class="text-2xl font-bold mb-6">
+              Crafting Digital Experiences
+            </h3>
+            <p class="text-slate-400 mb-6">
+              I'm a full-stack developer with over 3 years of experience
+              specializing in building exceptional digital experiences. My
+              passion lies in creating clean, efficient, and user-friendly
+              applications that solve real-world problems.
+            </p>
+
+            <p class="text-slate-400 mb-8">
+              My approach combines technical expertise with creative
+              problem-solving to deliver high-quality products that exceed
+              client expectations. I believe in the power of technology to
+              transform businesses and improve lives.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+              <div class="flex items-center">
+                <div
+                  class="w-12 h-12 bg-indigo-500/20 rounded-lg flex items-center justify-center mr-4"
+                >
+                  <i class="fas fa-code text-indigo-400"></i>
+                </div>
+                <div>
+                  <h4 class="font-semibold">Clean Code</h4>
+                  <p class="text-slate-400 text-sm">
+                    Readable, maintainable, and efficient
+                  </p>
+                </div>
+              </div>
+
+              <div class="flex items-center">
+                <div
+                  class="w-12 h-12 bg-emerald-500/20 rounded-lg flex items-center justify-center mr-4"
+                >
+                  <i class="fas fa-mobile-alt text-emerald-400"></i>
+                </div>
+                <div>
+                  <h4 class="font-semibold">Responsive Design</h4>
+                  <p class="text-slate-400 text-sm">Perfect on any device</p>
+                </div>
+              </div>
+
+              <div class="flex items-center">
+                <div
+                  class="w-12 h-12 bg-amber-500/20 rounded-lg flex items-center justify-center mr-4"
+                >
+                  <i class="fas fa-bolt text-amber-400"></i>
+                </div>
+                <div>
+                  <h4 class="font-semibold">Fast Performance</h4>
+                  <p class="text-slate-400 text-sm">
+                    Lightning-fast load times
+                  </p>
+                </div>
+              </div>
+
+              <div class="flex items-center">
+                <div
+                  class="w-12 h-12 bg-rose-500/20 rounded-lg flex items-center justify-center mr-4"
+                >
+                  <i class="fas fa-headset text-rose-400"></i>
+                </div>
+                <div>
+                  <h4 class="font-semibold">Great Support</h4>
+                  <p class="text-slate-400 text-sm">Always here to help</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex flex-wrap gap-4">
+              <a
+                href="./images/ayemele.pdf"
+                class="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-full font-medium transition-colors duration-300 flex items-center"
+              >
+                Download CV <i class="fas fa-download ml-2"></i>
+              </a>
+              <a
+                href="#contact"
+                class="border border-slate-600 hover:border-indigo-500 text-slate-300 hover:text-white px-6 py-3 rounded-full font-medium transition-all duration-300 flex items-center"
+              >
+                Let's Talk <i class="fas fa-comment-dots ml-2"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- Skills Section -->
     <section id="skills" class="section-padding bg-slate-800/30 relative">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-bold mb-6">My <span class="text-gradient">Skills</span></h2>
-                <p class="text-xl text-slate-400 max-w-2xl mx-auto">A blend of technical expertise and creative problem-solving</p>
-            </div>
-            
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                <div>
-                    <h3 class="text-2xl font-bold mb-8">Technical Expertise</h3>
-                    
-                    <div class="space-y-6">
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span class="font-medium">Python & Django</span>
-                                <span class="text-indigo-400 font-semibold">95%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress bg-gradient-to-r from-indigo-500 to-purple-600" style="width: 95%"></div>
-                            </div>
-                        </div>
-                        
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span class="font-medium">JavaScript & React</span>
-                                <span class="text-indigo-400 font-semibold">90%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress bg-gradient-to-r from-amber-500 to-amber-600" style="width: 90%"></div>
-                            </div>
-                        </div>
-                        
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span class="font-medium">UI/UX Design</span>
-                                <span class="text-indigo-400 font-semibold">85%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress bg-gradient-to-r from-emerald-500 to-emerald-600" style="width: 85%"></div>
-                            </div>
-                        </div>
-                        
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span class="font-medium">Database Design</span>
-                                <span class="text-indigo-400 font-semibold">88%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress bg-gradient-to-r from-rose-500 to-rose-600" style="width: 88%"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div>
-                    <h3 class="text-2xl font-bold mb-8">Professional Skills</h3>
-                    
-                    <div class="grid grid-cols-2 gap-6">
-                        <div class="glass-effect p-6 rounded-2xl text-center transition-transform duration-300 hover:scale-105">
-                            <div class="w-16 h-16 bg-indigo-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                                <i class="fas fa-comments text-indigo-400 text-2xl"></i>
-                            </div>
-                            <h4 class="font-semibold mb-2">Communication</h4>
-                            <p class="text-slate-400 text-sm">Clear and effective</p>
-                        </div>
-                        
-                        <div class="glass-effect p-6 rounded-2xl text-center transition-transform duration-300 hover:scale-105">
-                            <div class="w-16 h-16 bg-emerald-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                                <i class="fas fa-users text-emerald-400 text-2xl"></i>
-                            </div>
-                            <h4 class="font-semibold mb-2">Teamwork</h4>
-                            <p class="text-slate-400 text-sm">Collaborative spirit</p>
-                        </div>
-                        
-                        <div class="glass-effect p-6 rounded-2xl text-center transition-transform duration-300 hover:scale-105">
-                            <div class="w-16 h-16 bg-amber-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                                <i class="fas fa-lightbulb text-amber-400 text-2xl"></i>
-                            </div>
-                            <h4 class="font-semibold mb-2">Problem Solving</h4>
-                            <p class="text-slate-400 text-sm">Creative solutions</p>
-                        </div>
-                        
-                        <div class="glass-effect p-6 rounded-2xl text-center transition-transform duration-300 hover:scale-105">
-                            <div class="w-16 h-16 bg-rose-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                                <i class="fas fa-tasks text-rose-400 text-2xl"></i>
-                            </div>
-                            <h4 class="font-semibold mb-2">Project Management</h4>
-                            <p class="text-slate-400 text-sm">Organized approach</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl md:text-5xl font-bold mb-6">
+            My <span class="text-gradient">Skills</span>
+          </h2>
+          <p class="text-xl text-slate-400 max-w-2xl mx-auto">
+            A blend of technical expertise and creative problem-solving
+          </p>
         </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <div>
+            <h3 class="text-2xl font-bold mb-8">Technical Expertise</h3>
+
+            <div class="space-y-6">
+              <div>
+                <div class="flex justify-between mb-2">
+                  <span class="font-medium">Python & Django</span>
+                  <span class="text-indigo-400 font-semibold">95%</span>
+                </div>
+                <div class="skill-bar">
+                  <div
+                    class="skill-progress bg-gradient-to-r from-indigo-500 to-purple-600"
+                    style="width: 95%"
+                  ></div>
+                </div>
+              </div>
+
+              <div>
+                <div class="flex justify-between mb-2">
+                  <span class="font-medium">JavaScript & React</span>
+                  <span class="text-indigo-400 font-semibold">90%</span>
+                </div>
+                <div class="skill-bar">
+                  <div
+                    class="skill-progress bg-gradient-to-r from-amber-500 to-amber-600"
+                    style="width: 90%"
+                  ></div>
+                </div>
+              </div>
+
+              <div>
+                <div class="flex justify-between mb-2">
+                  <span class="font-medium">UI/UX Design</span>
+                  <span class="text-indigo-400 font-semibold">85%</span>
+                </div>
+                <div class="skill-bar">
+                  <div
+                    class="skill-progress bg-gradient-to-r from-emerald-500 to-emerald-600"
+                    style="width: 85%"
+                  ></div>
+                </div>
+              </div>
+
+              <div>
+                <div class="flex justify-between mb-2">
+                  <span class="font-medium">Database Design</span>
+                  <span class="text-indigo-400 font-semibold">88%</span>
+                </div>
+                <div class="skill-bar">
+                  <div
+                    class="skill-progress bg-gradient-to-r from-rose-500 to-rose-600"
+                    style="width: 88%"
+                  ></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="text-2xl font-bold mb-8">Professional Skills</h3>
+
+            <div class="grid grid-cols-2 gap-6">
+              <div
+                class="glass-effect p-6 rounded-2xl text-center transition-transform duration-300 hover:scale-105"
+              >
+                <div
+                  class="w-16 h-16 bg-indigo-500/20 rounded-full flex items-center justify-center mx-auto mb-4"
+                >
+                  <i class="fas fa-comments text-indigo-400 text-2xl"></i>
+                </div>
+                <h4 class="font-semibold mb-2">Communication</h4>
+                <p class="text-slate-400 text-sm">Clear and effective</p>
+              </div>
+
+              <div
+                class="glass-effect p-6 rounded-2xl text-center transition-transform duration-300 hover:scale-105"
+              >
+                <div
+                  class="w-16 h-16 bg-emerald-500/20 rounded-full flex items-center justify-center mx-auto mb-4"
+                >
+                  <i class="fas fa-users text-emerald-400 text-2xl"></i>
+                </div>
+                <h4 class="font-semibold mb-2">Teamwork</h4>
+                <p class="text-slate-400 text-sm">Collaborative spirit</p>
+              </div>
+
+              <div
+                class="glass-effect p-6 rounded-2xl text-center transition-transform duration-300 hover:scale-105"
+              >
+                <div
+                  class="w-16 h-16 bg-amber-500/20 rounded-full flex items-center justify-center mx-auto mb-4"
+                >
+                  <i class="fas fa-lightbulb text-amber-400 text-2xl"></i>
+                </div>
+                <h4 class="font-semibold mb-2">Problem Solving</h4>
+                <p class="text-slate-400 text-sm">Creative solutions</p>
+              </div>
+
+              <div
+                class="glass-effect p-6 rounded-2xl text-center transition-transform duration-300 hover:scale-105"
+              >
+                <div
+                  class="w-16 h-16 bg-rose-500/20 rounded-full flex items-center justify-center mx-auto mb-4"
+                >
+                  <i class="fas fa-tasks text-rose-400 text-2xl"></i>
+                </div>
+                <h4 class="font-semibold mb-2">Project Management</h4>
+                <p class="text-slate-400 text-sm">Organized approach</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- Projects Section -->
     <section id="projects" class="section-padding relative">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-bold mb-6">Featured <span class="text-gradient">Projects</span></h2>
-                <p class="text-xl text-slate-400 max-w-2xl mx-auto">A selection of my recent work that I'm proud of</p>
-            </div>
-            
-            <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8">
-                <!-- Project 1 -->
-                <div class="glass-effect rounded-2xl overflow-hidden project-card">
-                    <div class="h-48 bg-gradient-to-br from-indigo-500 to-purple-600 relative overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1674&q=80" 
-                             alt="E-commerce Platform" class="w-full h-full object-cover">
-                        <div class="absolute top-4 right-4 bg-emerald-500 text-white text-xs font-bold px-3 py-1 rounded-full">
-                            Published
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2">E-commerce Platform</h3>
-                        <p class="text-slate-400 mb-4">A full-featured online store with payment integration and admin dashboard.</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="bg-indigo-500/20 text-indigo-400 text-xs px-3 py-1 rounded-full">Django</span>
-                            <span class="bg-amber-500/20 text-amber-400 text-xs px-3 py-1 rounded-full">React</span>
-                            <span class="bg-emerald-500/20 text-emerald-400 text-xs px-3 py-1 rounded-full">PostgreSQL</span>
-                        </div>
-                        <div class="flex justify-between">
-                            <a href="#" class="text-indigo-400 hover:text-indigo-300 font-medium flex items-center">
-                                <i class="fas fa-external-link-alt mr-2"></i> Live Demo
-                            </a>
-                            <a href="https://github.com/C-Elgol/" class="text-slate-400 hover:text-white font-medium flex items-center">
-                                <i class="fab fa-github mr-2"></i> Code
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Project 2 -->
-                <div class="glass-effect rounded-2xl overflow-hidden project-card">
-                    <div class="h-48 bg-gradient-to-br from-amber-500 to-amber-600 relative overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1611224923853-80b023f02d71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1738&q=80" 
-                             alt="Task Management App" class="w-full h-full object-cover">
-                        <div class="absolute top-4 right-4 bg-amber-500 text-white text-xs font-bold px-3 py-1 rounded-full">
-                            In Progress
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2">Task Management App</h3>
-                        <p class="text-slate-400 mb-4">A collaborative tool for teams to manage projects and tasks efficiently.</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="bg-indigo-500/20 text-indigo-400 text-xs px-3 py-1 rounded-full">Python</span>
-                            <span class="bg-emerald-500/20 text-emerald-400 text-xs px-3 py-1 rounded-full">Vue.js</span>
-                            <span class="bg-rose-500/20 text-rose-400 text-xs px-3 py-1 rounded-full">MongoDB</span>
-                        </div>
-                        <div class="flex justify-between">
-                            <a href="#" class="text-indigo-400 hover:text-indigo-300 font-medium flex items-center">
-                                <i class="fas fa-external-link-alt mr-2"></i> Live Demo
-                            </a>
-                            <a href="https://github.com/C-Elgol/" class="text-slate-400 hover:text-white font-medium flex items-center">
-                                <i class="fab fa-github mr-2"></i> Code
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Project 3 -->
-                <div class="glass-effect rounded-2xl overflow-hidden project-card">
-                    <div class="h-48 bg-gradient-to-br from-emerald-500 to-emerald-600 relative overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" 
-                             alt="Portfolio Website" class="w-full h-full object-cover">
-                        <div class="absolute top-4 right-4 bg-emerald-500 text-white text-xs font-bold px-3 py-1 rounded-full">
-                            Published
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2">Portfolio Website</h3>
-                        <p class="text-slate-400 mb-4">A responsive portfolio website with blog and contact functionality.</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="bg-amber-500/20 text-amber-400 text-xs px-3 py-1 rounded-full">HTML/CSS</span>
-                            <span class="bg-indigo-500/20 text-indigo-400 text-xs px-3 py-1 rounded-full">JavaScript</span>
-                            <span class="bg-rose-500/20 text-rose-400 text-xs px-3 py-1 rounded-full">Tailwind</span>
-                        </div>
-                        <div class="flex justify-between">
-                            <a href="#" class="text-indigo-400 hover:text-indigo-300 font-medium flex items-center">
-                                <i class="fas fa-external-link-alt mr-2"></i> Live Demo
-                            </a>
-                            <a href="https://github.com/C-Elgol/" class="text-slate-400 hover:text-white font-medium flex items-center">
-                                <i class="fab fa-github mr-2"></i> Code
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="text-center mt-12">
-                <a href="#" class="inline-flex items-center text-indigo-400 hover:text-indigo-300 font-medium">
-                    View All Projects <i class="fas fa-arrow-right ml-2"></i>
-                </a>
-            </div>
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl md:text-5xl font-bold mb-6">
+            Featured <span class="text-gradient">Projects</span>
+          </h2>
+          <p class="text-xl text-slate-400 max-w-2xl mx-auto">
+            A selection of my recent work that I'm proud of
+          </p>
         </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8">
+          <!-- Project 1 -->
+          <div class="glass-effect rounded-2xl overflow-hidden project-card">
+            <div
+              class="h-48 bg-gradient-to-br from-indigo-500 to-purple-600 relative overflow-hidden"
+            >
+              <img
+                src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1674&q=80"
+                alt="E-commerce Platform"
+                class="w-full h-full object-cover"
+              />
+              <div
+                class="absolute top-4 right-4 bg-emerald-500 text-white text-xs font-bold px-3 py-1 rounded-full"
+              >
+                Published
+              </div>
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-2">E-commerce Platform</h3>
+              <p class="text-slate-400 mb-4">
+                A full-featured online store with payment integration and admin
+                dashboard.
+              </p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span
+                  class="bg-indigo-500/20 text-indigo-400 text-xs px-3 py-1 rounded-full"
+                  >Django</span
+                >
+                <span
+                  class="bg-amber-500/20 text-amber-400 text-xs px-3 py-1 rounded-full"
+                  >React</span
+                >
+                <span
+                  class="bg-emerald-500/20 text-emerald-400 text-xs px-3 py-1 rounded-full"
+                  >PostgreSQL</span
+                >
+              </div>
+              <div class="flex justify-between">
+                <a
+                  href="#"
+                  class="text-indigo-400 hover:text-indigo-300 font-medium flex items-center"
+                >
+                  <i class="fas fa-external-link-alt mr-2"></i> Live Demo
+                </a>
+                <a
+                  href="https://github.com/C-Elgol/"
+                  class="text-slate-400 hover:text-white font-medium flex items-center"
+                >
+                  <i class="fab fa-github mr-2"></i> Code
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 2 -->
+          <div class="glass-effect rounded-2xl overflow-hidden project-card">
+            <div
+              class="h-48 bg-gradient-to-br from-amber-500 to-amber-600 relative overflow-hidden"
+            >
+              <img
+                src="https://images.unsplash.com/photo-1611224923853-80b023f02d71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1738&q=80"
+                alt="Task Management App"
+                class="w-full h-full object-cover"
+              />
+              <div
+                class="absolute top-4 right-4 bg-amber-500 text-white text-xs font-bold px-3 py-1 rounded-full"
+              >
+                In Progress
+              </div>
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-2">Task Management App</h3>
+              <p class="text-slate-400 mb-4">
+                A collaborative tool for teams to manage projects and tasks
+                efficiently.
+              </p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span
+                  class="bg-indigo-500/20 text-indigo-400 text-xs px-3 py-1 rounded-full"
+                  >Python</span
+                >
+                <span
+                  class="bg-emerald-500/20 text-emerald-400 text-xs px-3 py-1 rounded-full"
+                  >Vue.js</span
+                >
+                <span
+                  class="bg-rose-500/20 text-rose-400 text-xs px-3 py-1 rounded-full"
+                  >MongoDB</span
+                >
+              </div>
+              <div class="flex justify-between">
+                <a
+                  href="#"
+                  class="text-indigo-400 hover:text-indigo-300 font-medium flex items-center"
+                >
+                  <i class="fas fa-external-link-alt mr-2"></i> Live Demo
+                </a>
+                <a
+                  href="https://github.com/C-Elgol/"
+                  class="text-slate-400 hover:text-white font-medium flex items-center"
+                >
+                  <i class="fab fa-github mr-2"></i> Code
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 3 -->
+          <div class="glass-effect rounded-2xl overflow-hidden project-card">
+            <div
+              class="h-48 bg-gradient-to-br from-emerald-500 to-emerald-600 relative overflow-hidden"
+            >
+              <img
+                src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80"
+                alt="Portfolio Website"
+                class="w-full h-full object-cover"
+              />
+              <div
+                class="absolute top-4 right-4 bg-emerald-500 text-white text-xs font-bold px-3 py-1 rounded-full"
+              >
+                Published
+              </div>
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-2">Portfolio Website</h3>
+              <p class="text-slate-400 mb-4">
+                A responsive portfolio website with blog and contact
+                functionality.
+              </p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span
+                  class="bg-amber-500/20 text-amber-400 text-xs px-3 py-1 rounded-full"
+                  >HTML/CSS</span
+                >
+                <span
+                  class="bg-indigo-500/20 text-indigo-400 text-xs px-3 py-1 rounded-full"
+                  >JavaScript</span
+                >
+                <span
+                  class="bg-rose-500/20 text-rose-400 text-xs px-3 py-1 rounded-full"
+                  >Tailwind</span
+                >
+              </div>
+              <div class="flex justify-between">
+                <a
+                  href="#"
+                  class="text-indigo-400 hover:text-indigo-300 font-medium flex items-center"
+                >
+                  <i class="fas fa-external-link-alt mr-2"></i> Live Demo
+                </a>
+                <a
+                  href="https://github.com/C-Elgol/"
+                  class="text-slate-400 hover:text-white font-medium flex items-center"
+                >
+                  <i class="fab fa-github mr-2"></i> Code
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center mt-12">
+          <a
+            href="#"
+            class="inline-flex items-center text-indigo-400 hover:text-indigo-300 font-medium"
+          >
+            View All Projects <i class="fas fa-arrow-right ml-2"></i>
+          </a>
+        </div>
+      </div>
     </section>
 
     <!-- Contact Section -->
     <section id="contact" class="section-padding bg-slate-800/30 relative">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-bold mb-6">Get In <span class="text-gradient">Touch</span></h2>
-                <p class="text-xl text-slate-400 max-w-2xl mx-auto">Let's work together to bring your ideas to life</p>
-            </div>
-            
-            <div class="flex flex-col lg:flex-row gap-12">
-                <div class="lg:w-2/5">
-                    <h3 class="text-2xl font-bold mb-8">Let's Talk</h3>
-                    
-                    <div class="space-y-6 mb-8">
-                        <div class="flex items-start">
-                            <div class="w-12 h-12 bg-indigo-500/20 rounded-lg flex items-center justify-center mr-4">
-                                <i class="fas fa-envelope text-indigo-400"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold">Email</h4>
-                                <p class="text-slate-400">ayemeleelgol@gmail.com</p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-start">
-                            <div class="w-12 h-12 bg-emerald-500/20 rounded-lg flex items-center justify-center mr-4">
-                                <i class="fas fa-phone text-emerald-400"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold">Phone</h4>
-                                <p class="text-slate-400">+237 652-59-66-59</p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-start">
-                            <div class="w-12 h-12 bg-amber-500/20 rounded-lg flex items-center justify-center mr-4">
-                                <i class="fas fa-map-marker-alt text-amber-400"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold">Location</h4>
-                                <p class="text-slate-400">Bafoussam, CMR</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <h3 class="text-2xl font-bold mb-6">Follow Me</h3>
-                    <div class="flex space-x-4">
-                        <a href="https://github.com/C-Elgol/" target="_blank" class="w-12 h-12 bg-slate-700 hover:bg-indigo-600 rounded-lg flex items-center justify-center text-slate-300 hover:text-white transition-colors duration-300">
-                            <i class="fab fa-github"></i>
-                        </a>
-                        <a href="https://www.linkedin.com/in/ayemele-elgol-b43745356/" target="_blank" class="w-12 h-12 bg-slate-700 hover:bg-blue-700 rounded-lg flex items-center justify-center text-slate-300 hover:text-white transition-colors duration-300">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                        <a href="https://web.facebook.com/profile.php?id=61577284316778" target="_blank" 
-                        class="w-12 h-12 bg-slate-700 hover:bg-blue-600 rounded-lg flex items-center justify-center text-slate-300 hover:text-white transition-colors duration-300">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a href="https://wa.me/237652596659" target="_blank" 
-                        class="w-12 h-12 bg-slate-700 hover:bg-green-500 rounded-lg flex items-center justify-center text-slate-300 hover:text-white transition-colors duration-300">
-                            <i class="fab fa-whatsapp"></i>
-                        </a>
-                        <a href="#" class="w-12 h-12 bg-slate-700 hover:bg-blue-400 rounded-lg flex items-center justify-center text-slate-300 hover:text-white transition-colors duration-300">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        <a href="#" class="w-12 h-12 bg-slate-700 hover:bg-pink-600 rounded-lg flex items-center justify-center text-slate-300 hover:text-white transition-colors duration-300">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                    </div>
-                </div>
-                
-                <div class="lg:w-3/5">
-                    <form id="contact-form" class="space-y-6">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div>
-                            <label for="name" class="block text-slate-300 mb-2">Your Name</label>
-                            <input type="text" id="name" name="name" required
-                                class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-white">
-                            </div>
-                            <div>
-                            <label for="email" class="block text-slate-300 mb-2">Your Email</label>
-                            <input type="email" id="email" name="email" required
-                                class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-white">
-                            </div>
-                        </div>
-
-                        <div>
-                            <label for="subject" class="block text-slate-300 mb-2">Subject</label>
-                            <input type="text" id="subject" name="subject" required
-                            class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-white">
-                        </div>
-
-                        <div>
-                            <label for="message" class="block text-slate-300 mb-2">Message</label>
-                            <textarea id="message" name="message" rows="5" required
-                            class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-white"></textarea>
-                        </div>
-
-                        <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-4 rounded-full font-medium transition-colors duration-300 glow w-full md:w-auto">
-                            Send Message <i class="fas fa-paper-plane ml-2"></i>
-                        </button>
-                    </form>
-                </div>
-            </div>
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl md:text-5xl font-bold mb-6">
+            Get In <span class="text-gradient">Touch</span>
+          </h2>
+          <p class="text-xl text-slate-400 max-w-2xl mx-auto">
+            Let's work together to bring your ideas to life
+          </p>
         </div>
+
+        <div class="flex flex-col lg:flex-row gap-12">
+          <div class="lg:w-2/5">
+            <h3 class="text-2xl font-bold mb-8">Let's Talk</h3>
+
+            <div class="space-y-6 mb-8">
+              <div class="flex items-start">
+                <div
+                  class="w-12 h-12 bg-indigo-500/20 rounded-lg flex items-center justify-center mr-4"
+                >
+                  <i class="fas fa-envelope text-indigo-400"></i>
+                </div>
+                <div>
+                  <h4 class="font-semibold">Email</h4>
+                  <p class="text-slate-400">ayemeleelgol@gmail.com</p>
+                </div>
+              </div>
+
+              <div class="flex items-start">
+                <div
+                  class="w-12 h-12 bg-emerald-500/20 rounded-lg flex items-center justify-center mr-4"
+                >
+                  <i class="fas fa-phone text-emerald-400"></i>
+                </div>
+                <div>
+                  <h4 class="font-semibold">Phone</h4>
+                  <p class="text-slate-400">+237 652-59-66-59</p>
+                </div>
+              </div>
+
+              <div class="flex items-start">
+                <div
+                  class="w-12 h-12 bg-amber-500/20 rounded-lg flex items-center justify-center mr-4"
+                >
+                  <i class="fas fa-map-marker-alt text-amber-400"></i>
+                </div>
+                <div>
+                  <h4 class="font-semibold">Location</h4>
+                  <p class="text-slate-400">Bafoussam, CMR</p>
+                </div>
+              </div>
+            </div>
+
+            <h3 class="text-2xl font-bold mb-6">Follow Me</h3>
+            <div class="flex space-x-4">
+              <a
+                href="https://github.com/C-Elgol/"
+                target="_blank"
+                class="w-12 h-12 bg-slate-700 hover:bg-indigo-600 rounded-lg flex items-center justify-center text-slate-300 hover:text-white transition-colors duration-300"
+              >
+                <i class="fab fa-github"></i>
+              </a>
+              <a
+                href="https://www.linkedin.com/in/ayemele-elgol-b43745356/"
+                target="_blank"
+                class="w-12 h-12 bg-slate-700 hover:bg-blue-700 rounded-lg flex items-center justify-center text-slate-300 hover:text-white transition-colors duration-300"
+              >
+                <i class="fab fa-linkedin-in"></i>
+              </a>
+              <a
+                href="https://web.facebook.com/profile.php?id=61577284316778"
+                target="_blank"
+                class="w-12 h-12 bg-slate-700 hover:bg-blue-600 rounded-lg flex items-center justify-center text-slate-300 hover:text-white transition-colors duration-300"
+              >
+                <i class="fab fa-facebook-f"></i>
+              </a>
+              <a
+                href="https://wa.me/237652596659"
+                target="_blank"
+                class="w-12 h-12 bg-slate-700 hover:bg-green-500 rounded-lg flex items-center justify-center text-slate-300 hover:text-white transition-colors duration-300"
+              >
+                <i class="fab fa-whatsapp"></i>
+              </a>
+              <a
+                href="#"
+                class="w-12 h-12 bg-slate-700 hover:bg-blue-400 rounded-lg flex items-center justify-center text-slate-300 hover:text-white transition-colors duration-300"
+              >
+                <i class="fab fa-twitter"></i>
+              </a>
+              <a
+                href="#"
+                class="w-12 h-12 bg-slate-700 hover:bg-pink-600 rounded-lg flex items-center justify-center text-slate-300 hover:text-white transition-colors duration-300"
+              >
+                <i class="fab fa-instagram"></i>
+              </a>
+            </div>
+          </div>
+
+          <div class="lg:w-3/5">
+            <form id="contact-form" class="space-y-6">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label for="name" class="block text-slate-300 mb-2"
+                    >Your Name</label
+                  >
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    required
+                    class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-white"
+                  />
+                </div>
+                <div>
+                  <label for="email" class="block text-slate-300 mb-2"
+                    >Your Email</label
+                  >
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    required
+                    class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-white"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label for="subject" class="block text-slate-300 mb-2"
+                  >Subject</label
+                >
+                <input
+                  type="text"
+                  id="subject"
+                  name="subject"
+                  required
+                  class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-white"
+                />
+              </div>
+
+              <div>
+                <label for="message" class="block text-slate-300 mb-2"
+                  >Message</label
+                >
+                <textarea
+                  id="message"
+                  name="message"
+                  rows="5"
+                  required
+                  class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-white"
+                ></textarea>
+              </div>
+
+              <button
+                type="submit"
+                class="bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-4 rounded-full font-medium transition-colors duration-300 glow w-full md:w-auto"
+              >
+                Send Message <i class="fas fa-paper-plane ml-2"></i>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- Footer -->
     <footer class="bg-slate-900 py-8 border-t border-slate-800">
-        <div class="container mx-auto px-6">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="mb-4 md:mb-0">
-                    <a href="#" class="text-2xl font-bold text-gradient">AE.</a>
-                    <p class="text-slate-400 mt-2">Full Stack Developer</p>
-                </div>
-                <div class="flex space-x-6">
-                    <a href="#home" class="text-slate-400 hover:text-white transition">Home</a>
-                    <a href="#about" class="text-slate-400 hover:text-white transition">About</a>
-                    <a href="#projects" class="text-slate-400 hover:text-white transition">Projects</a>
-                    <a href="#contact" class="text-slate-400 hover:text-white transition">Contact</a>
-                </div>
-            </div>
-            <div class="border-t border-slate-800 mt-8 pt-6 text-center text-slate-400">
-                <p>&copy; 2023 Ayemele Elgol. All rights reserved.</p>
-            </div>
+      <div class="container mx-auto px-6">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+          <div class="mb-4 md:mb-0">
+            <a href="#"
+              ><img src="./images/logo.jpeg" alt="AE Logo" class="h-8"
+            /></a>
+            <p class="text-slate-400 mt-2">Full Stack Developer</p>
+          </div>
+          <div class="flex space-x-6">
+            <a href="#home" class="text-slate-400 hover:text-white transition"
+              >Home</a
+            >
+            <a href="#about" class="text-slate-400 hover:text-white transition"
+              >About</a
+            >
+            <a
+              href="#projects"
+              class="text-slate-400 hover:text-white transition"
+              >Projects</a
+            >
+            <a
+              href="#contact"
+              class="text-slate-400 hover:text-white transition"
+              >Contact</a
+            >
+          </div>
         </div>
+        <div
+          class="border-t border-slate-800 mt-8 pt-6 text-center text-slate-400"
+        >
+          <p>&copy; 2023 Ayemele Elgol. All rights reserved.</p>
+        </div>
+      </div>
     </footer>
     <script src="script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
     <script>
-        // ==================== TYPING ANIMATION ====================
-        const typingText = document.getElementById('typingText');
-        const roles = ['Full Stack Developer', 'UI/UX Designer', 'Problem Solver', 'Creative Thinker'];
-        let roleIndex = 0;
-        let charIndex = 0;
-        let isDeleting = false;
+      // ==================== TYPING ANIMATION ====================
+      const typingText = document.getElementById("typingText");
+      const roles = [
+        "Full Stack Developer",
+        "UI/UX Designer",
+        "Problem Solver",
+        "Creative Thinker",
+      ];
+      let roleIndex = 0;
+      let charIndex = 0;
+      let isDeleting = false;
 
-        function type() {
-            const currentRole = roles[roleIndex];
-            if (!isDeleting) {
-                typingText.textContent = currentRole.substring(0, charIndex);
-                charIndex++;
-                if (charIndex > currentRole.length) {
-                    isDeleting = true;
-                    setTimeout(type, 1500); // Pause before deleting
-                } else {
-                    setTimeout(type, 100); // Typing speed
-                }
-            } else {
-                typingText.textContent = currentRole.substring(0, charIndex);
-                charIndex--;
-                if (charIndex < 0) {
-                    isDeleting = false;
-                    roleIndex = (roleIndex + 1) % roles.length;
-                    setTimeout(type, 500); // Pause before typing next role
-                } else {
-                    setTimeout(type, 50); // Deleting speed
-                }
-            }
+      function type() {
+        const currentRole = roles[roleIndex];
+        if (!isDeleting) {
+          typingText.textContent = currentRole.substring(0, charIndex);
+          charIndex++;
+          if (charIndex > currentRole.length) {
+            isDeleting = true;
+            setTimeout(type, 1500); // Pause before deleting
+          } else {
+            setTimeout(type, 100); // Typing speed
+          }
+        } else {
+          typingText.textContent = currentRole.substring(0, charIndex);
+          charIndex--;
+          if (charIndex < 0) {
+            isDeleting = false;
+            roleIndex = (roleIndex + 1) % roles.length;
+            setTimeout(type, 500); // Pause before typing next role
+          } else {
+            setTimeout(type, 50); // Deleting speed
+          }
         }
+      }
 
-        // Start typing animation
-        type();
+      // Start typing animation
+      type();
 
-        // Existing EmailJS and Toast code
-        function showToast(message, type = "success", duration = 3000) {
-            const container = document.getElementById("toast-container");
-            const toast = document.createElement("div");
-            toast.className = `toast toast-${type}`;
-            toast.textContent = message;
-            container.appendChild(toast);
+      // Existing EmailJS and Toast code
+      function showToast(message, type = "success", duration = 3000) {
+        const container = document.getElementById("toast-container");
+        const toast = document.createElement("div");
+        toast.className = `toast toast-${type}`;
+        toast.textContent = message;
+        container.appendChild(toast);
 
-            // Trigger animation
-            setTimeout(() => toast.classList.add("toast-show"), 100);
+        // Trigger animation
+        setTimeout(() => toast.classList.add("toast-show"), 100);
 
-            // Remove toast after duration
-            setTimeout(() => {
-                toast.classList.remove("toast-show");
-                setTimeout(() => toast.remove(), 300); // allow transition to complete
-            }, duration);
-        }
+        // Remove toast after duration
+        setTimeout(() => {
+          toast.classList.remove("toast-show");
+          setTimeout(() => toast.remove(), 300); // allow transition to complete
+        }, duration);
+      }
 
-        (function() {
-            emailjs.init("5QC70C1d6tdDD20Xs"); // Your Public Key
-        })();
+      (function () {
+        emailjs.init("5QC70C1d6tdDD20Xs"); // Your Public Key
+      })();
 
-        document.getElementById("contact-form").addEventListener("submit", function(event) {
-            event.preventDefault();
+      document
+        .getElementById("contact-form")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
 
-            const button = this.querySelector('button');
-            button.disabled = true;
-            button.textContent = "Sending...";
+          const button = this.querySelector("button");
+          button.disabled = true;
+          button.textContent = "Sending...";
 
-            const time = new Date().toLocaleString();
+          const time = new Date().toLocaleString();
 
-            emailjs.send("service_k3gtisn", "template_7tfm9x9", {
-                name: document.getElementById("name").value,
-                email: document.getElementById("email").value,
-                subject: document.getElementById("subject").value,
-                message: document.getElementById("message").value,
-                time: time
-            }).then(
-                function(response) {
-                    showToast("✅ Message sent successfully!", "success");
-                    event.target.reset();
-                },
-                function(error) {
-                    showToast("❌ Failed to send message. Please try again.", "error");
-                    console.error("EmailJS Error:", error);
-                }
-            ).finally(() => {
-                button.disabled = false;
-                button.textContent = "Send Message ✈️";
+          emailjs
+            .send("service_k3gtisn", "template_7tfm9x9", {
+              name: document.getElementById("name").value,
+              email: document.getElementById("email").value,
+              subject: document.getElementById("subject").value,
+              message: document.getElementById("message").value,
+              time: time,
+            })
+            .then(
+              function (response) {
+                showToast("✅ Message sent successfully!", "success");
+                event.target.reset();
+              },
+              function (error) {
+                showToast(
+                  "❌ Failed to send message. Please try again.",
+                  "error",
+                );
+                console.error("EmailJS Error:", error);
+              },
+            )
+            .finally(() => {
+              button.disabled = false;
+              button.textContent = "Send Message ✈️";
             });
         });
     </script>
     <!-- Toast Container -->
-    <div id="toast-container" class="fixed top-5 right-5 flex flex-col gap-3 z-50"></div>
-</body>
+    <div
+      id="toast-container"
+      class="fixed top-5 right-5 flex flex-col gap-3 z-50"
+    ></div>
+  </body>
 </html>
